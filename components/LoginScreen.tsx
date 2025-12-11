@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, ChevronRight, Loader2, MapPin, Building2, Lock } from 'lucide-react';
+import { Shield, ChevronRight, Loader2, MapPin, Building2, Lock, Eye, EyeOff } from 'lucide-react';
 import { Kampung } from '../types';
 
 interface LoginScreenProps {
@@ -19,7 +19,8 @@ const KAMPUNGS: Kampung[] = [
 
 const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, agentId, setAgentId }) => {
   const [selectedKampungId, setSelectedKampungId] = useState<string>('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('pension123');
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -131,12 +132,23 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, agentId, setAgentId 
                 <Lock className="h-5 w-5 text-gray-400" />
               </div>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="block w-full pl-12 pr-4 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-gov-900 transition-all font-mono text-lg font-medium tracking-widest"
+                className="block w-full pl-12 pr-12 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-0 focus:border-gov-900 transition-all font-mono text-lg font-medium tracking-widest"
                 placeholder="••••••••"
               />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none"
+              >
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5" />
+                ) : (
+                  <Eye className="h-5 w-5" />
+                )}
+              </button>
             </div>
              {error && (
                 <p className="text-xs text-red-500 font-bold ml-1 pt-1 animate-pulse">

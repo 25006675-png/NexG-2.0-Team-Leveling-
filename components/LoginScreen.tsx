@@ -1,3 +1,4 @@
+"use client";
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, ChevronRight, Loader2, MapPin, Building2, Lock, Eye, EyeOff } from 'lucide-react';
@@ -141,7 +142,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({ onLogin, agentId, setAgentId 
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none"
+                className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gov-900 focus:outline-none cursor-pointer z-10"
               >
                 {showPassword ? (
                   <EyeOff className="h-5 w-5" />
